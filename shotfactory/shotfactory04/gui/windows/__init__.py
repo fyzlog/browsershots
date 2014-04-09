@@ -48,7 +48,7 @@ class Gui(base.Gui):
         Set screen resolution with Stefan Tucker's Resolution Changer
         Freeware, available from http://www.12noon.com/reschange.htm
         """
-        self.shell('reschangecon.exe -width=%u -height=%u -depth=%u > NUL'
+        self.shell('reschangecon.exe -force -width=%u -height=%u -depth=%u > NUL'
                    % (self.width, self.height, self.bpp))
         # Move the mouse cursor out of the way
         win32api.SetCursorPos((0, 0))
@@ -98,10 +98,10 @@ class Gui(base.Gui):
             # Kill all processes matching name, using
             # pv.exe from teamcti.com (freeware):
             # http://www.teamcti.com/pview/prcview.htm
-            os.system('pv.exe -kf -y%s %s "2>nul" > nul' % (username, name))
+            os.system('pv.exe -kf %s "2>nul" > nul' % (name))
             short = short_filename(name)
             if short != name:
-                os.system('pv.exe -kf -y%s %s "2>nul" > nul' % (username, short))
+                os.system('pv.exe -kf %s "2>nul" > nul' % (short))
 
 
     def find_window_by_title_suffix(self, suffix):
